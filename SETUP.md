@@ -34,8 +34,8 @@ Pronto. O Claude Code agora consegue criar projetos, tabelas e configurar tudo n
 Abre o terminal e roda:
 
 ```bash
-git clone https://github.com/amandadiniz/sistema-financeiro.git
-cd sistema-financeiro
+git clone https://github.com/amandadinizmkt/sistema-financeiro-aula.git
+cd sistema-financeiro-aula
 npm install
 ```
 
