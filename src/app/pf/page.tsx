@@ -174,7 +174,7 @@ export default function PFPage() {
       {modal.open && (
         <LancamentoModal
           secao="pf"
-          initial={modal.item as Record<string, unknown>}
+          initial={modal.item as unknown as Record<string, unknown>}
           onSave={saveLancamento}
           onClose={() => setModal({ open: false })}
         />

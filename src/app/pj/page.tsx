@@ -7,7 +7,7 @@ import LancamentoModal from '@/components/LancamentoModal'
 import DRERenderer from '@/components/DRERenderer'
 import { PJData, Lancamento, formatBRL } from '@/lib/types'
 
-const toArr = <T,>(v: T[] | unknown): T[] => Array.isArray(v) ? v : []
+const toArr = <T,>(v: T[] | unknown): T[] => (Array.isArray(v) ? (v as T[]) : [])
 
 interface HistoryEntry {
   month: string
@@ -107,11 +107,11 @@ export default function PJPage() {
   const empresa = tab === 'agencia' ? agencia : tab === 'cursos' ? cursos : null
 
   const allLancamentos: Lancamento[] = tab === 'agencia' ? [
-    ...toArr(empresa?.receitas), ...toArr(empresa?.despesas),
-    ...toArr(empresa?.impostos), ...toArr(empresa?.distribuicao_lucro),
-    ...(!isReadOnly ? toArr(activeData?.lancamentos_manuais) : []),
+    ...toArr<Lancamento>(empresa?.receitas), ...toArr<Lancamento>(empresa?.despesas),
+    ...toArr<Lancamento>(empresa?.impostos), ...toArr<Lancamento>(empresa?.distribuicao_lucro),
+    ...(!isReadOnly ? toArr<Lancamento>(activeData?.lancamentos_manuais) : []),
   ] : tab === 'cursos' ? [
-    ...toArr(empresa?.receitas), ...toArr(empresa?.despesas),
+    ...toArr<Lancamento>(empresa?.receitas), ...toArr<Lancamento>(empresa?.despesas),
   ] : []
 
   const margemPct = (res: number, liq: number) => liq > 0 ? (res / liq) * 100 : 0
@@ -328,7 +328,7 @@ export default function PJPage() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 {(['agencia', 'cursos'] as const).map(k => {
                   const emp = activeData.empresas?.[k]
-                  const items = [...toArr(emp?.receitas), ...toArr(emp?.despesas), ...toArr(emp?.impostos)]
+                  const items = [...toArr<Lancamento>(emp?.receitas), ...toArr<Lancamento>(emp?.despesas), ...toArr<Lancamento>(emp?.impostos)]
                   const label = k === 'agencia' ? 'Agência Furtacor' : 'Amanda Diniz Marketing'
                   return (
                     <div key={k} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: 18 }}>
@@ -383,7 +383,7 @@ export default function PJPage() {
       </main>
 
       {modal.open && (
-        <LancamentoModal secao="pj" initial={modal.item as Record<string, unknown>}
+        <LancamentoModal secao="pj" initial={modal.item as unknown as Record<string, unknown>}
           onSave={saveLancamento} onClose={() => setModal({ open: false })} />
       )}
     </div>
