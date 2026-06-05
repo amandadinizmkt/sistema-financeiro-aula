@@ -162,16 +162,20 @@ Quando terminar tudo, diga à usuária:
 
 Depois que o setup tá feito, todo mês você repete este fluxo:
 
-## 1. Junte seus dados do mês numa pasta
+## 1. Junte seus dados do mês na pasta `pj-imports/`
 
-Crie uma pasta onde quiser na sua máquina e jogue lá os prints, PDFs e CSVs do mês:
+Dentro do projeto que você clonou, tem uma pasta chamada **`pj-imports/`**. É lá que você joga os arquivos do mês — prints do app do banco, PDFs do extrato, CSVs de plataformas (Hotmart, Kiwify, Stripe, etc.).
 
-```bash
-mkdir -p ~/meu-financeiro/junho-2026
-# joga todos os arquivos lá
+```
+sistema-financeiro-aula/
+├── pj-imports/        ← aqui você joga os arquivos do PJ
+│   ├── extrato-bradesco-junho.pdf
+│   ├── print-nubank-junho.png
+│   └── relatorio-hotmart-junho.csv
+└── pf-imports/        ← e aqui os arquivos pessoais (PF)
 ```
 
-Pode misturar formatos — o Fernando aceita tudo.
+Pode misturar formatos — o Fernando aceita tudo (PDF, PNG, JPG, CSV).
 
 ## 2. Rode o OpenSQUAD
 

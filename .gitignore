@@ -48,3 +48,5 @@ pf-imports/*
 !pf-imports/.gitkeep
 .env.local
 .env
+pj-imports/*
+!pj-imports/.gitkeep
