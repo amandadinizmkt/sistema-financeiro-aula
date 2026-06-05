@@ -46,6 +46,7 @@ export interface EmpresaPJ {
 export interface PJData {
   ultimo_sync: string | null
   periodo: string | null
+  mes?: string | null
   run_id: string | null
   empresas: {
     agencia: EmpresaPJ

@@ -64,10 +64,15 @@ export default function PJPage() {
 
   const archiveMonth = async () => {
     setArchiving(true)
-    const res = await fetch('/api/archive', { method: 'POST' })
+    const mesAtual = activeData?.mes ?? activeData?.periodo?.slice(0, 7)
+    const res = await fetch('/api/archive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mes: mesAtual }),
+    })
     const j = await res.json()
     if (res.ok) {
-      setMsg(`✅ ${j.label} arquivado! Dados limpos para novo mês.`)
+      setMsg(`✅ ${j.label} arquivado! Pronto para receber o próximo mês.`)
       load(); loadHistory()
     } else setMsg(`❌ ${j.error}`)
     setArchiving(false)

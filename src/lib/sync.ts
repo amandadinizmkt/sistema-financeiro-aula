@@ -5,11 +5,18 @@ import { parseDRETotais } from './dre-parser'
 
 export function findLatestRun(squadOutputPath: string): string | null {
   try {
-    const entries = fs.readdirSync(squadOutputPath)
-      .filter(e => /^\d{4}-\d{2}-\d{2}/.test(e))
-      .sort()
-      .reverse()
-    return entries[0] ? path.join(squadOutputPath, entries[0]) : null
+    const entries = fs.readdirSync(squadOutputPath, { withFileTypes: true })
+      .filter(e => e.isDirectory())
+      // Aceita qualquer pasta que tenha um run dentro (transacoes-extraidas.json
+      // direto ou em v1/). Filtro mais permissivo do que regex estrita.
+      .filter(e => /^\d{4}-/.test(e.name))
+      .map(e => {
+        const full = path.join(squadOutputPath, e.name)
+        return { name: e.name, full, mtime: fs.statSync(full).mtimeMs }
+      })
+      // Mais recente por data de modificação (independe do formato do nome)
+      .sort((a, b) => b.mtime - a.mtime)
+    return entries[0]?.full ?? null
   } catch {
     return null
   }
