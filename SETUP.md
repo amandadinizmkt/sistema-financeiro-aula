@@ -52,7 +52,7 @@ claude
 Quando o Claude Code abrir, **cole exatamente este prompt** (com Ctrl+V / Cmd+V):
 
 ```
-Quero configurar este projeto. Faça tudo isso para mim:
+Quero configurar este projeto. Faça tudo isso para mim, na ordem:
 
 1. Crie um novo projeto Supabase chamado "sistema-financeiro-[meu-nome]" na região mais próxima do Brasil (us-east-1 ou sa-east-1).
 
@@ -64,13 +64,15 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<a chave>
 
 4. Aplique a migração SQL que está em supabase/migrations/init.sql neste novo projeto Supabase.
 
-5. Configure as URLs de auth (Site URL: http://localhost:3000 e Redirect URLs: http://localhost:3000/**).
+5. Configure as URLs de auth no Supabase (Site URL: http://localhost:3000 e Redirect URLs: http://localhost:3000/**).
 
 6. Desative confirmação de email para uso local.
 
-7. Copie o arquivo config/sistema.example.json para config/sistema.json. O squad já está na pasta squad/ deste projeto, então pode deixar o squad_output_path como "./squad/output". Me pergunte só o nome das minhas duas verticais (agência e cursos/marketing) para preencher o sistema.json.
+7. Copie a pasta squad/ deste projeto para ~/squads/squad-financeiro-aula/ (assim o OpenSQUAD vai encontrar o squad quando eu rodar). Cria a pasta ~/squads/squad-financeiro-aula/output/ vazia também se ela não existir.
 
-8. Quando terminar, me diga o que devo fazer em seguida.
+8. Copie o arquivo config/sistema.example.json para config/sistema.json. Já preenche o squad_output_path com "/Users/[meu-usuario]/squads/squad-financeiro-aula/output" (substituindo [meu-usuario] pelo meu usuário real). Me pergunte só o nome das minhas duas verticais (agência e cursos/marketing) para preencher os outros campos.
+
+9. Quando terminar, me diga o que devo fazer em seguida.
 ```
 
 O Claude Code vai fazer **todo o setup técnico sozinho**. Você só precisa responder 2 perguntas:
