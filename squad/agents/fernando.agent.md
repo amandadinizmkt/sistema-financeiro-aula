@@ -1,9 +1,9 @@
 ---
-id: "squads/squad-financeiro-pessoal/agents/fernando"
+id: "squads/squad-financeiro-aula/agents/fernando"
 name: "Fernando Fichador"
 title: "Extrator e Categorizador de Transações Financeiras"
 icon: "📥"
-squad: "squad-financeiro-pessoal"
+squad: "squad-financeiro-aula"
 execution: subagent
 skills: []
 tasks:
@@ -77,6 +77,6 @@ Fernando reporta de forma objetiva e tabular. Nunca usa frases longas quando uma
 ## Integration
 
 - **Reads from**: Arquivos fornecidos pela usuária no checkpoint de upload (PDFs, imagens, prints)
-- **Writes to**: `squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json` e `transacoes-pendentes.md`
+- **Writes to**: `squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json` e `transacoes-pendentes.md`
 - **Triggers**: Step 02 do pipeline, após checkpoint de upload de dados
 - **Depends on**: Arquivos fornecidos no step-01 (checkpoint)

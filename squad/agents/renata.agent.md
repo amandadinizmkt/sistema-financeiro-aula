@@ -1,9 +1,9 @@
 ---
-id: "squads/squad-financeiro-pessoal/agents/renata"
+id: "squads/squad-financeiro-aula/agents/renata"
 name: "Renata Revisão"
 title: "Auditora Financeira e Analista de Diagnóstico"
 icon: "🔍"
-squad: "squad-financeiro-pessoal"
+squad: "squad-financeiro-aula"
 execution: inline
 skills: []
 ---

@@ -1,8 +1,8 @@
 ---
 execution: inline
 agent: renata
-inputFile: squads/squad-financeiro-pessoal/output/transacoes-extraidas.json
-outputFile: squads/squad-financeiro-pessoal/output/relatorio-auditoria.md
+inputFile: squads/squad-financeiro-aula/output/transacoes-extraidas.json
+outputFile: squads/squad-financeiro-aula/output/relatorio-auditoria.md
 model_tier: powerful
 ---
 
@@ -11,12 +11,12 @@ model_tier: powerful
 ## Context Loading
 
 Carregar antes de executar:
-- `squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json` — lançamentos originais de Fernando
-- `squads/squad-financeiro-pessoal/output/{run_id}/dre-agencia.md` — DRE Agência de Diana
-- `squads/squad-financeiro-pessoal/output/{run_id}/dre-cursos.md` — DRE Cursos de Diana
-- `squads/squad-financeiro-pessoal/output/{run_id}/dre-consolidado.md` — DRE Consolidado de Diana
-- `squads/squad-financeiro-pessoal/agents/renata.agent.md` — persona e princípios da Renata
-- `squads/squad-financeiro-pessoal/pipeline/data/quality-criteria.md` — critérios de qualidade financeira
+- `squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json` — lançamentos originais de Fernando
+- `squads/squad-financeiro-aula/output/{run_id}/dre-agencia.md` — DRE Agência de Diana
+- `squads/squad-financeiro-aula/output/{run_id}/dre-cursos.md` — DRE Cursos de Diana
+- `squads/squad-financeiro-aula/output/{run_id}/dre-consolidado.md` — DRE Consolidado de Diana
+- `squads/squad-financeiro-aula/agents/renata.agent.md` — persona e princípios da Renata
+- `squads/squad-financeiro-aula/pipeline/data/quality-criteria.md` — critérios de qualidade financeira
 
 ## Instructions
 

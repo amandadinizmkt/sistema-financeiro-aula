@@ -1,8 +1,8 @@
 ---
 execution: subagent
 agent: victor
-inputFile: squads/squad-financeiro-pessoal/output/dre-agencia.md
-outputFile: squads/squad-financeiro-pessoal/output/dashboard-consolidado.html
+inputFile: squads/squad-financeiro-aula/output/dre-agencia.md
+outputFile: squads/squad-financeiro-aula/output/dashboard-consolidado.html
 model_tier: powerful
 ---
 
@@ -11,11 +11,11 @@ model_tier: powerful
 ## Context Loading
 
 Carregar antes de executar:
-- `squads/squad-financeiro-pessoal/output/{run_id}/dre-agencia.md` — DRE da Agência com todos os valores
-- `squads/squad-financeiro-pessoal/output/{run_id}/dre-cursos.md` — DRE de Cursos com todos os valores
-- `squads/squad-financeiro-pessoal/output/{run_id}/dre-consolidado.md` — DRE Consolidado com todos os valores
-- `squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json` — lançamentos para tabela detalhada
-- `squads/squad-financeiro-pessoal/agents/victor.agent.md` — persona e princípios do Victor
+- `squads/squad-financeiro-aula/output/{run_id}/dre-agencia.md` — DRE da Agência com todos os valores
+- `squads/squad-financeiro-aula/output/{run_id}/dre-cursos.md` — DRE de Cursos com todos os valores
+- `squads/squad-financeiro-aula/output/{run_id}/dre-consolidado.md` — DRE Consolidado com todos os valores
+- `squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json` — lançamentos para tabela detalhada
+- `squads/squad-financeiro-aula/agents/victor.agent.md` — persona e princípios do Victor
 
 ## Instructions
 

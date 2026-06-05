@@ -1,8 +1,8 @@
 ---
 execution: inline
 agent: diana
-inputFile: squads/squad-financeiro-pessoal/output/transacoes-extraidas.json
-outputFile: squads/squad-financeiro-pessoal/output/dre-agencia.md
+inputFile: squads/squad-financeiro-aula/output/transacoes-extraidas.json
+outputFile: squads/squad-financeiro-aula/output/dre-agencia.md
 model_tier: powerful
 ---
 
@@ -11,11 +11,11 @@ model_tier: powerful
 ## Context Loading
 
 Carregar antes de executar:
-- `squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json` — lançamentos confirmados pela usuária
-- `squads/squad-financeiro-pessoal/agents/diana.agent.md` — persona e princípios da Diana
-- `squads/squad-financeiro-pessoal/agents/diana/tasks/build-dre.md` — processo de construção dos DREs
-- `squads/squad-financeiro-pessoal/agents/diana/tasks/generate-apps-script.md` — processo de geração do script
-- `squads/squad-financeiro-pessoal/pipeline/data/domain-framework.md` — padrão brasileiro de DRE
+- `squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json` — lançamentos confirmados pela usuária
+- `squads/squad-financeiro-aula/agents/diana.agent.md` — persona e princípios da Diana
+- `squads/squad-financeiro-aula/agents/diana/tasks/build-dre.md` — processo de construção dos DREs
+- `squads/squad-financeiro-aula/agents/diana/tasks/generate-apps-script.md` — processo de geração do script
+- `squads/squad-financeiro-aula/pipeline/data/domain-framework.md` — padrão brasileiro de DRE
 
 ## Instructions
 

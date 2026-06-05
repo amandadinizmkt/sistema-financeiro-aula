@@ -1,5 +1,5 @@
 name: "Pipeline Financeiro Pessoal"
-squad: "squad-financeiro-pessoal"
+squad: "squad-financeiro-aula"
 version: "1.0.0"
 
 steps:
@@ -7,7 +7,7 @@ steps:
     name: "upload-dados"
     type: checkpoint
     file: steps/step-01-upload-dados.md
-    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/contexto-periodo.md"
+    output_file: "squads/squad-financeiro-aula/output/{run_id}/contexto-periodo.md"
 
   - step: 2
     name: "fernando-extracao"
@@ -16,8 +16,8 @@ steps:
     execution: subagent
     model_tier: powerful
     file: steps/step-02-fernando-extracao.md
-    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/contexto-periodo.md"
-    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json"
+    input_file: "squads/squad-financeiro-aula/output/{run_id}/contexto-periodo.md"
+    output_file: "squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json"
 
   - step: 3
     name: "revisao-transacoes"
@@ -30,8 +30,8 @@ steps:
     agent: diana
     execution: inline
     file: steps/step-04-diana-dre-sheets.md
-    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json"
-    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/dre-agencia.md"
+    input_file: "squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json"
+    output_file: "squads/squad-financeiro-aula/output/{run_id}/dre-agencia.md"
 
   - step: 5
     name: "victor-dashboard"
@@ -40,8 +40,8 @@ steps:
     execution: subagent
     model_tier: powerful
     file: steps/step-05-victor-dashboard.md
-    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/dre-agencia.md"
-    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/dashboard-consolidado.html"
+    input_file: "squads/squad-financeiro-aula/output/{run_id}/dre-agencia.md"
+    output_file: "squads/squad-financeiro-aula/output/{run_id}/dashboard-consolidado.html"
 
   - step: 6
     name: "revisao-dashboard"
@@ -54,8 +54,8 @@ steps:
     agent: renata
     execution: inline
     file: steps/step-07-renata-auditoria.md
-    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json"
-    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/relatorio-auditoria.md"
+    input_file: "squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json"
+    output_file: "squads/squad-financeiro-aula/output/{run_id}/relatorio-auditoria.md"
 
 checkpoints:
   - step: 1

@@ -1,6 +1,6 @@
 ---
 type: checkpoint
-outputFile: squads/squad-financeiro-pessoal/output/contexto-periodo.md
+outputFile: squads/squad-financeiro-aula/output/contexto-periodo.md
 ---
 
 # Checkpoint — Upload de Documentos Financeiros

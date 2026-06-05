@@ -1,8 +1,8 @@
 ---
 execution: subagent
 agent: fernando
-inputFile: squads/squad-financeiro-pessoal/output/contexto-periodo.md
-outputFile: squads/squad-financeiro-pessoal/output/transacoes-extraidas.json
+inputFile: squads/squad-financeiro-aula/output/contexto-periodo.md
+outputFile: squads/squad-financeiro-aula/output/transacoes-extraidas.json
 model_tier: powerful
 ---
 
@@ -11,10 +11,10 @@ model_tier: powerful
 ## Context Loading
 
 Carregar antes de executar:
-- `squads/squad-financeiro-pessoal/output/{run_id}/contexto-periodo.md` — período de referência, instruções de categorização e lista de documentos enviados pela usuária
-- `squads/squad-financeiro-pessoal/agents/fernando.agent.md` — persona e princípios do Fernando
-- `squads/squad-financeiro-pessoal/agents/fernando/tasks/extract-transactions.md` — processo detalhado de extração
-- `squads/squad-financeiro-pessoal/pipeline/data/domain-framework.md` — framework financeiro de referência
+- `squads/squad-financeiro-aula/output/{run_id}/contexto-periodo.md` — período de referência, instruções de categorização e lista de documentos enviados pela usuária
+- `squads/squad-financeiro-aula/agents/fernando.agent.md` — persona e princípios do Fernando
+- `squads/squad-financeiro-aula/agents/fernando/tasks/extract-transactions.md` — processo detalhado de extração
+- `squads/squad-financeiro-aula/pipeline/data/domain-framework.md` — framework financeiro de referência
 - Todos os arquivos de documentos financeiros enviados pela usuária (PDFs, imagens)
 
 ## Instructions

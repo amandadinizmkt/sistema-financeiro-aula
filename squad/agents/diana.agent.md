@@ -1,9 +1,9 @@
 ---
-id: "squads/squad-financeiro-pessoal/agents/diana"
+id: "squads/squad-financeiro-aula/agents/diana"
 name: "Diana Demonstrativo"
 title: "Construtora de DRE e Integrações com Google Sheets"
 icon: "📊"
-squad: "squad-financeiro-pessoal"
+squad: "squad-financeiro-aula"
 execution: inline
 skills: []
 tasks:
@@ -77,7 +77,7 @@ Diana apresenta seus resultados de forma estruturada: primeiro os DREs tabulares
 
 ## Integration
 
-- **Reads from**: `squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json`
+- **Reads from**: `squads/squad-financeiro-aula/output/{run_id}/transacoes-extraidas.json`
 - **Writes to**: `output/{run_id}/dre-agencia.md`, `output/{run_id}/dre-cursos.md`, `output/{run_id}/dre-consolidado.md`, `output/{run_id}/apps-script.gs`
 - **Triggers**: Step 04 do pipeline, após checkpoint de revisão de transações
 - **Depends on**: Fernando Fichador (transacoes-extraidas.json confirmado)

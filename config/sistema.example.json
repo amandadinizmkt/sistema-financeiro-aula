@@ -1,7 +1,7 @@
 {
   "nome": "Sistema Financeiro — [SEU NOME]",
   "tipo": "pessoal",
-  "squad_output_path": "./squad/output",
+  "squad_output_path": "/Users/SEU_USUARIO/squads/squad-financeiro-aula/output",
   "pf_imports_path": "./pf-imports",
   "empresas": {
     "agencia": "Nome da sua agência ou empresa principal",

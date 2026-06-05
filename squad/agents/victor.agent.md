@@ -1,9 +1,9 @@
 ---
-id: "squads/squad-financeiro-pessoal/agents/victor"
+id: "squads/squad-financeiro-aula/agents/victor"
 name: "Victor Visual"
 title: "Gerador de Dashboards Financeiros em HTML"
 icon: "🎨"
-squad: "squad-financeiro-pessoal"
+squad: "squad-financeiro-aula"
 execution: subagent
 skills: []
 ---

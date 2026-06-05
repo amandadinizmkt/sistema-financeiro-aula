@@ -1,5 +1,5 @@
-name: "Squad Financeiro Pessoal"
-code: "squad-financeiro-pessoal"
+name: "Squad Financeiro Aula CFO Automático"
+code: "squad-financeiro-aula"
 description: "Squad financeiro para duas frentes (Agência Fortecor + Cursos/Assinatura) sob o mesmo CNPJ. Processa extratos PDF e prints de plataformas, atualiza Google Sheets, gera DREs separados e consolidado (PDF), e dashboards HTML por área."
 version: "1.0.0"
 performance_mode: "alta-performance"
