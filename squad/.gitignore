@@ -1,0 +1,2 @@
+squad/output/*
+!squad/output/.gitkeep

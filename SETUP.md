@@ -68,15 +68,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<a chave>
 
 6. Desative confirmação de email para uso local.
 
-7. Copie o arquivo config/sistema.example.json para config/sistema.json. Me pergunte qual o caminho da pasta do squad financeiro pessoal e o nome das minhas duas verticais (agência e cursos/marketing) para preencher o sistema.json.
+7. Copie o arquivo config/sistema.example.json para config/sistema.json. O squad já está na pasta squad/ deste projeto, então pode deixar o squad_output_path como "./squad/output". Me pergunte só o nome das minhas duas verticais (agência e cursos/marketing) para preencher o sistema.json.
 
 8. Quando terminar, me diga o que devo fazer em seguida.
 ```
 
-O Claude Code vai fazer **todo o setup técnico sozinho**. Você só precisa responder as 3 perguntas que ele fizer:
+O Claude Code vai fazer **todo o setup técnico sozinho**. Você só precisa responder 2 perguntas:
 
 - Qual o nome do seu projeto?
-- Qual o caminho da pasta do squad financeiro pessoal?
 - Qual o nome da sua agência e da segunda vertical (cursos, mentorias, marketing)?
 
 ---
@@ -98,8 +97,14 @@ Abre o navegador em **http://localhost:3000** → clica em "Primeiro acesso? Cri
 Tem 2 jeitos de colocar dados no sistema:
 
 ### Para Conta PJ:
-1. Rode o squad financeiro pessoal no mês que você quer
-2. No sistema, clique em **🔄 Extrair do Squad** → carrega tudo automaticamente
+1. Coloque seus extratos e prints do mês numa pasta qualquer
+2. Abra o Claude Code dentro da pasta deste projeto e rode:
+   ```
+   /opensquad → run squad-financeiro-pessoal
+   ```
+   (o squad já está incluído neste projeto, em `squad/`)
+3. Aguarde o squad rodar (~10 min)
+4. No sistema, clique em **🔄 Extrair do Squad** → carrega tudo automaticamente
 
 ### Para Conta PF:
 1. Coloca prints de extrato ou CSVs na pasta `pf-imports/`

@@ -1,0 +1,33 @@
+name: "Squad Financeiro Pessoal"
+code: "squad-financeiro-pessoal"
+description: "Squad financeiro para duas frentes (Agência Fortecor + Cursos/Assinatura) sob o mesmo CNPJ. Processa extratos PDF e prints de plataformas, atualiza Google Sheets, gera DREs separados e consolidado (PDF), e dashboards HTML por área."
+version: "1.0.0"
+performance_mode: "alta-performance"
+created: "2026-04-20"
+
+skills:
+  - web_search
+  - web_fetch
+
+data:
+  - pipeline/data/research-brief.md
+  - pipeline/data/domain-framework.md
+  - pipeline/data/quality-criteria.md
+  - pipeline/data/output-examples.md
+  - pipeline/data/anti-patterns.md
+
+agents:
+  - id: fernando
+    name: "Fernando Fichador"
+    file: ./agents/fernando.agent.md
+  - id: diana
+    name: "Diana Demonstrativo"
+    file: ./agents/diana.agent.md
+  - id: victor
+    name: "Victor Visual"
+    file: ./agents/victor.agent.md
+  - id: renata
+    name: "Renata Revisão"
+    file: ./agents/renata.agent.md
+
+pipeline: pipeline/pipeline.yaml

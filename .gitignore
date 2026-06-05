@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Dados sensíveis — nunca commitar
-data/
+/data/
 config/*
 !config/sistema.example.json
 pf-imports/*

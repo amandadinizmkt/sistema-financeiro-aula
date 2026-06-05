@@ -1,8 +1,8 @@
 {
   "nome": "Sistema Financeiro — [SEU NOME]",
   "tipo": "pessoal",
-  "squad_output_path": "/Users/SEU_USUARIO/CAMINHO/PARA/squad-financeiro-pessoal/output",
-  "pf_imports_path": "/Users/SEU_USUARIO/CAMINHO/PARA/sistema-financeiro/pf-imports",
+  "squad_output_path": "./squad/output",
+  "pf_imports_path": "./pf-imports",
   "empresas": {
     "agencia": "Nome da sua agência ou empresa principal",
     "cursos": "Nome da segunda vertical (cursos, mentorias, etc.)"

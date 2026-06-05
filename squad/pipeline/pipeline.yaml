@@ -1,0 +1,66 @@
+name: "Pipeline Financeiro Pessoal"
+squad: "squad-financeiro-pessoal"
+version: "1.0.0"
+
+steps:
+  - step: 1
+    name: "upload-dados"
+    type: checkpoint
+    file: steps/step-01-upload-dados.md
+    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/contexto-periodo.md"
+
+  - step: 2
+    name: "fernando-extracao"
+    type: agent
+    agent: fernando
+    execution: subagent
+    model_tier: powerful
+    file: steps/step-02-fernando-extracao.md
+    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/contexto-periodo.md"
+    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json"
+
+  - step: 3
+    name: "revisao-transacoes"
+    type: checkpoint
+    file: steps/step-03-revisao-transacoes.md
+
+  - step: 4
+    name: "diana-dre-sheets"
+    type: agent
+    agent: diana
+    execution: inline
+    file: steps/step-04-diana-dre-sheets.md
+    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json"
+    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/dre-agencia.md"
+
+  - step: 5
+    name: "victor-dashboard"
+    type: agent
+    agent: victor
+    execution: subagent
+    model_tier: powerful
+    file: steps/step-05-victor-dashboard.md
+    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/dre-agencia.md"
+    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/dashboard-consolidado.html"
+
+  - step: 6
+    name: "revisao-dashboard"
+    type: checkpoint
+    file: steps/step-06-revisao-dashboard.md
+
+  - step: 7
+    name: "renata-auditoria"
+    type: agent
+    agent: renata
+    execution: inline
+    file: steps/step-07-renata-auditoria.md
+    input_file: "squads/squad-financeiro-pessoal/output/{run_id}/transacoes-extraidas.json"
+    output_file: "squads/squad-financeiro-pessoal/output/{run_id}/relatorio-auditoria.md"
+
+checkpoints:
+  - step: 1
+    name: "upload-dados"
+  - step: 3
+    name: "revisao-transacoes"
+  - step: 6
+    name: "revisao-dashboard"
