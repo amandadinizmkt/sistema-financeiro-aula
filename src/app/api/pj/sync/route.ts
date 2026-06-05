@@ -12,18 +12,20 @@ export async function POST() {
 
     const rawPath = config.squad_output_path as string
 
-    // C-3 fix: validate path is within allowed directories
-    const allowed = [
-      path.resolve(process.cwd(), '..', 'squads'),
-      path.resolve(process.cwd(), 'squads'),
-    ]
-    const resolved = path.resolve(rawPath)
-    const isAllowed = allowed.some(a => resolved.startsWith(a))
-    if (!isAllowed) {
-      return NextResponse.json({ error: 'Caminho de squad não permitido' }, { status: 403 })
+    // C-3 fix: validate path is safe.
+    // Allowed: any absolute path inside $HOME or any relative path resolved
+    // inside the project directory. This is a local-only system — the config
+    // file is on the user's own machine, and auth/middleware blocks external
+    // access. We still block /etc/, /var/, /System/ etc.
+    const resolved = path.resolve(process.cwd(), rawPath)
+    const home = process.env.HOME || process.env.USERPROFILE || ''
+    const insideHome = home && resolved.startsWith(home + path.sep)
+    const insideCwd = resolved.startsWith(process.cwd() + path.sep)
+    if (!insideHome && !insideCwd) {
+      return NextResponse.json({ error: 'Caminho de squad não permitido (fora de $HOME)' }, { status: 403 })
     }
 
-    const squadData = syncFromSquad(rawPath)
+    const squadData = syncFromSquad(resolved)
     if (!squadData) {
       return NextResponse.json({ error: 'Nenhum output do squad encontrado' }, { status: 404 })
     }

@@ -15,22 +15,36 @@ export function findLatestRun(squadOutputPath: string): string | null {
   }
 }
 
+// Find a file across versioned subdirs (v1, v2, v3, ...) or directly in runDir.
+// OpenSQUAD saves outputs split across vN folders — each step produces files in its own version.
+function findFile(runDir: string, fileName: string): string | null {
+  const direct = path.join(runDir, fileName)
+  if (fs.existsSync(direct)) return direct
+  try {
+    const versions = fs.readdirSync(runDir)
+      .filter(d => /^v\d+$/.test(d))
+      .sort()
+    for (const v of versions) {
+      const p = path.join(runDir, v, fileName)
+      if (fs.existsSync(p)) return p
+    }
+  } catch { /* ignore */ }
+  return null
+}
+
 export function syncFromSquad(squadOutputPath: string): PJData | null {
   const runDir = findLatestRun(squadOutputPath)
   if (!runDir) return null
 
-  const v1 = path.join(runDir, 'v1')
-  const dataDir = fs.existsSync(v1) ? v1 : runDir
-
-  const txFile = path.join(dataDir, 'transacoes-extraidas.json')
-  if (!fs.existsSync(txFile)) return null
+  const txFile = findFile(runDir, 'transacoes-extraidas.json')
+  if (!txFile) return null
 
   const tx = JSON.parse(fs.readFileSync(txFile, 'utf-8'))
   const runId = path.basename(runDir)
 
-  const dreAgencia = tryRead(path.join(dataDir, 'dre-agencia.md'))
-  const dreCursos = tryRead(path.join(dataDir, 'dre-cursos.md'))
-  const dreConsolidado = tryRead(path.join(dataDir, 'dre-consolidado.md'))
+  const dreAgencia = tryRead(findFile(runDir, 'dre-agencia.md') ?? '')
+  const dreCursos = tryRead(findFile(runDir, 'dre-cursos.md') ?? '')
+  const dreConsolidado = tryRead(findFile(runDir, 'dre-consolidado.md') ?? '')
 
   // Parse authoritative totais from DRE markdown files
   const totaisAgencia = parseDRETotais(dreAgencia, 'agencia')
