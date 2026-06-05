@@ -26,9 +26,17 @@ export async function POST() {
     }
 
     const empresas = (config.empresas as Record<string, string>) ?? {}
+    // Trata placeholders do example.json como não-preenchidos
+    const cleanName = (s: string | undefined): string | undefined => {
+      if (!s) return undefined
+      const trimmed = s.trim()
+      if (!trimmed) return undefined
+      const placeholder = /^(nome da sua|nome da segunda|seu nome|exemplo|placeholder|\[)/i
+      return placeholder.test(trimmed) ? undefined : trimmed
+    }
     const squadData = syncFromSquad(resolved, {
-      agencia: empresas.agencia,
-      cursos: empresas.cursos,
+      agencia: cleanName(empresas.agencia),
+      cursos: cleanName(empresas.cursos),
     })
     if (!squadData) {
       return NextResponse.json({ error: 'Nenhum output do squad encontrado' }, { status: 404 })
