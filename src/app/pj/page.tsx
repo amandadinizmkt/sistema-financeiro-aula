@@ -273,8 +273,8 @@ export default function PJPage() {
             {/* Tabs */}
             <div style={{ display: 'flex', gap: 4, marginBottom: 22, background: 'var(--surface)', padding: 4, borderRadius: 10, width: 'fit-content', border: '1px solid var(--border)' }}>
               {([
-                { key: 'agencia', label: '🏢 Agência Furtacor' },
-                { key: 'cursos', label: '📚 Amanda Diniz Marketing' },
+                { key: 'agencia', label: agencia?.nome ? '🏢 ' + agencia.nome : '🏢 Empresa 1' },
+                { key: 'cursos', label: cursos?.nome ? '📚 ' + cursos.nome : '📚 Empresa 2' },
                 { key: 'consolidado', label: '📊 Consolidado' },
                 { key: 'dre', label: '📋 DRE' },
               ] as const).map(t => (
@@ -329,7 +329,7 @@ export default function PJPage() {
                 {(['agencia', 'cursos'] as const).map(k => {
                   const emp = activeData.empresas?.[k]
                   const items = [...toArr<Lancamento>(emp?.receitas), ...toArr<Lancamento>(emp?.despesas), ...toArr<Lancamento>(emp?.impostos)]
-                  const label = k === 'agencia' ? 'Agência Furtacor' : 'Amanda Diniz Marketing'
+                  const label = emp?.nome ?? (k === 'agencia' ? 'Empresa 1' : 'Empresa 2')
                   return (
                     <div key={k} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: 18 }}>
                       <h3 style={{ fontSize: 13, fontWeight: 700, color: 'var(--rose)', marginBottom: 14 }}>{label}</h3>
@@ -345,8 +345,8 @@ export default function PJPage() {
               <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: 28 }}>
                 <div style={{ display: 'flex', gap: 8, marginBottom: 22, background: 'var(--surface2)', padding: 4, borderRadius: 8, width: 'fit-content', border: '1px solid var(--border)' }}>
                   {([
-                    { key: 'agencia', label: 'Agência Furtacor' },
-                    { key: 'cursos', label: 'Amanda Diniz Marketing' },
+                    { key: 'agencia', label: agencia?.nome ?? 'Empresa 1' },
+                    { key: 'cursos', label: cursos?.nome ?? 'Empresa 2' },
                     { key: 'consolidado', label: 'Consolidado' },
                   ] as const).map(d => (
                     <button key={d.key} onClick={() => setDreTab(d.key)} style={{
@@ -360,7 +360,7 @@ export default function PJPage() {
                 </div>
                 <DRERenderer
                   markdown={activeData.dre?.[dreTab] ?? ''}
-                  title={dreTab === 'agencia' ? 'Agência Furtacor' : dreTab === 'cursos' ? 'Amanda Diniz Marketing' : 'Consolidado'}
+                  title={dreTab === 'agencia' ? (agencia?.nome ?? 'Empresa 1') : dreTab === 'cursos' ? (cursos?.nome ?? 'Empresa 2') : 'Consolidado'}
                 />
               </div>
             )}

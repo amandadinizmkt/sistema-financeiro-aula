@@ -32,7 +32,26 @@ function findFile(runDir: string, fileName: string): string | null {
   return null
 }
 
-export function syncFromSquad(squadOutputPath: string): PJData | null {
+// Split mixed "lancamentos" array (with tipo:receita/despesa) into receitas + despesas.
+// Some squad runs return a single `lancamentos` array; others return pre-split arrays.
+function splitLancamentos(area: Record<string, unknown> | undefined) {
+  if (!area) return { receitas: [] as Lancamento[], despesas: [] as Lancamento[], impostos: [] as Lancamento[] }
+  const lanc = toArray<Lancamento>(area.lancamentos as Lancamento[])
+  if (lanc.length > 0) {
+    return {
+      receitas: lanc.filter(l => l.tipo === 'receita'),
+      despesas: lanc.filter(l => l.tipo === 'despesa' && !(l.categoria ?? '').toLowerCase().includes('imposto')),
+      impostos: lanc.filter(l => (l.categoria ?? '').toLowerCase().includes('imposto')),
+    }
+  }
+  return {
+    receitas: toArray<Lancamento>(area.receitas as Lancamento[]),
+    despesas: toArray<Lancamento>(area.despesas as Lancamento[]),
+    impostos: toArray<Lancamento>(area.impostos as Lancamento[]),
+  }
+}
+
+export function syncFromSquad(squadOutputPath: string, nomes?: { agencia?: string; cursos?: string }): PJData | null {
   const runDir = findLatestRun(squadOutputPath)
   if (!runDir) return null
 
@@ -50,13 +69,16 @@ export function syncFromSquad(squadOutputPath: string): PJData | null {
   const totaisAgencia = parseDRETotais(dreAgencia, 'agencia')
   const totaisCursos = parseDRETotais(dreCursos, 'cursos')
 
+  const ag = splitLancamentos(tx.agencia)
+  const cu = splitLancamentos(tx.cursos)
+
   return {
     ultimo_sync: new Date().toISOString(),
     periodo: tx.periodo ?? null,
     run_id: runId,
     empresas: {
       agencia: {
-        nome: 'Agência Furtacor',
+        nome: nomes?.agencia ?? 'Empresa 1',
         totais: {
           receita_bruta: totaisAgencia.receita_bruta,
           receita_liquida: totaisAgencia.receita_liquida,
@@ -64,21 +86,21 @@ export function syncFromSquad(squadOutputPath: string): PJData | null {
           resultado_operacional: totaisAgencia.resultado,
           distribuicao_lucro: totaisAgencia.distribuicao_lucro,
         },
-        receitas: withIds(toArray(tx.agencia?.receitas)),
-        despesas: withIds(toArray(tx.agencia?.despesas)),
-        impostos: withIds(toArray(tx.agencia?.impostos)),
-        distribuicao_lucro: withIds(toArray(tx.agencia?.distribuicao_lucro)),
+        receitas: withIds(ag.receitas),
+        despesas: withIds(ag.despesas),
+        impostos: withIds(ag.impostos),
+        distribuicao_lucro: withIds(toArray<Lancamento>(tx.agencia?.distribuicao_lucro)),
       },
       cursos: {
-        nome: 'Amanda Diniz Marketing',
+        nome: nomes?.cursos ?? 'Empresa 2',
         totais: {
           receita_bruta: totaisCursos.receita_bruta,
           receita_liquida: totaisCursos.receita_liquida,
           despesas_operacionais: totaisCursos.despesas_operacionais,
           resultado_operacional: totaisCursos.resultado,
         },
-        receitas: normalizeCursosReceitas(tx.cursos, tx.periodo),
-        despesas: withIds(toArray(tx.cursos?.despesas)),
+        receitas: cu.receitas.length > 0 ? withIds(cu.receitas) : normalizeCursosReceitas(tx.cursos, tx.periodo),
+        despesas: withIds(cu.despesas.length > 0 ? cu.despesas : toArray<Lancamento>(tx.cursos?.despesas)),
       },
     },
     pendencias: tx.pendencias ?? [],

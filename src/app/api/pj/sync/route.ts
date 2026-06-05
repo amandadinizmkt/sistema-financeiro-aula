@@ -25,7 +25,11 @@ export async function POST() {
       return NextResponse.json({ error: 'Caminho de squad não permitido (fora de $HOME)' }, { status: 403 })
     }
 
-    const squadData = syncFromSquad(resolved)
+    const empresas = (config.empresas as Record<string, string>) ?? {}
+    const squadData = syncFromSquad(resolved, {
+      agencia: empresas.agencia,
+      cursos: empresas.cursos,
+    })
     if (!squadData) {
       return NextResponse.json({ error: 'Nenhum output do squad encontrado' }, { status: 404 })
     }

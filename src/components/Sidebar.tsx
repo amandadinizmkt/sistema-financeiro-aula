@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
 const nav = [
-  { href: '/pj', label: 'Conta PJ', icon: '🏢', sub: 'Agência + Cursos' },
+  { href: '/pj', label: 'Conta PJ', icon: '🏢', sub: 'Empresarial' },
   { href: '/pf', label: 'Conta PF', icon: '👤', sub: 'Pessoal' },
 ]
 
@@ -38,7 +38,7 @@ export default function Sidebar() {
         <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--cream)', lineHeight: 1.3 }}>
           Sistema Financeiro
         </div>
-        <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 4 }}>Amanda Diniz</div>
+        <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 4 }}>Gestão Financeira</div>
       </div>
 
       {/* Nav */}
