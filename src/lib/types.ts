@@ -64,6 +64,7 @@ export interface PJData {
 export interface PFData {
   ultimo_sync: string | null
   periodo: string | null
+  mes?: string | null
   contas: {
     pf: {
       nome: string
